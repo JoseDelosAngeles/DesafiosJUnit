@@ -86,16 +86,16 @@ public class CartServiceImplTest {
 		Product product = new Product("Jacket", 30.00D);
 		when(database.findProductById(2)).thenReturn(product);
 		Double result = service.applyDiscount(10D, 2);
-		assertEquals(result,27D);
+		assertEquals(27D,result);
 		verify(database).findProductById(anyInt());
 	}
 	
 	@Test
 	public void testInsertProduct() {
 		Product product = new Product("Jacket", 30.00D);
-		when(service.insertProduct(product)).thenReturn(1);
+		when(database.insertProduct(product)).thenReturn(1);
 		Integer id = service.insertProduct(product);
-		assertEquals(id, 1);
+		assertEquals(1, id);
 		assertTrue(service.getProducts().contains(product));
 		verify(database, atLeast(1)).insertProduct(product);
 	}
